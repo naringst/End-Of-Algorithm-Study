@@ -13,10 +13,7 @@
 # 실행시간 
 ## 0.01ms~ 0.42ms
 
-from collections import deque 
-
 def solution(participant, completion):
-    completion = deque(completion)
     dict = {}
 
     for i in range(len(participant)) :

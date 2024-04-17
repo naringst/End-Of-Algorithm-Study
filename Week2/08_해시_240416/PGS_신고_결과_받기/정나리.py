@@ -9,7 +9,7 @@
 ## 13분
 
 # 실행시간 
-## ms~ ms
+## 0.01ms~ 125.46msms
 
 from collections import defaultdict
 def solution(id_list, report, k):

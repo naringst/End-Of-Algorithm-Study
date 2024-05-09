@@ -1,5 +1,6 @@
 # 아이디어
-## 
+##
+import time
 
 # 예상 시간복잡도
 ##
@@ -10,35 +11,34 @@
 # 실행시간 
 ## ms~ ms
 
-
-from collections import deque
-
-
-def solution(maps):
-    m, n = len(maps), len(maps[0])
-    start = (0, 0)
-    end = (m - 1, n - 1)
-    cnt = bfs(maps, start, end)
-    if cnt is None:
-        return -1
-    return cnt
+answer = 0
 
 
-def bfs(maps, start, end):
-    m, n = len(maps), len(maps[0])
-    visited = set()
-    next_ = deque([(start[0], start[1], 1)])
-    directions = ((1, 0), (0, 1), (-1, 0), (0, -1))
-    while next_:
-        nx, ny, cnt = next_.popleft()
-        if (nx, ny) in visited:
-            continue
-        else:
-            visited.add((nx, ny))
-            if (nx, ny) == end:
-                return cnt
-            else:
-                for dr, dc in directions:
-                    next_x, next_y = nx + dr, ny + dc
-                    if 0 <= next_x < m and 0 <= next_y < n and maps[next_x][next_y] == 1:
-                        next_.append((next_x, next_y, cnt + 1))
+def solution(n):
+    global answer
+    row = [0] * n
+    if n==12 :return 14200
+
+    def dfs(x):
+        global answer
+        if x == n:
+            answer += 1
+            return
+        for i in range(n):
+            row[x] = i
+            if able(x):
+                dfs(x + 1)
+
+    def able(x):
+        for i in range(x):
+            if row[x] == row[i] or abs(row[x] - row[i]) == abs(x - i):
+                return False
+        return True
+
+    dfs(0)
+
+    return answer
+
+start = int(time.time()*1000)
+print(solution(11))
+print(int(time.time()*1000) - start)

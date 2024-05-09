@@ -1,11 +1,25 @@
-# 아이디어
-## 
+keyinput, board = ["down", "down", "down", "down", "down"], [7, 9]
 
-# 예상 시간복잡도
-##
+x = int(board[0]/2)
+y = int(board[1]/2)
+now_x = 0
+now_y = 0
+for move in keyinput:
+    if move == "left":
+        now_x -= 1
+        if now_x < -x:
+            now_x = -x
+    if move == "right":
+        now_x += 1
+        if now_x > x:
+            now_x = x
+    if move == "up":
+        now_y += 1
+        if now_y > y:
+            now_y = y
+    if move == "down":
+        now_y -= 1
+        if now_y < -y:
+            now_y = -y
 
-# 풀이시간 
-## 분
-
-# 실행시간 
-## ms~ ms
+print(now_x, now_y)
